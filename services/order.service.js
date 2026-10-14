@@ -2,7 +2,6 @@ import { orderResponse } from "../api/mappers/order.mappers.js";
 import { randomUUID } from "node:crypto";
 import * as orderRepository from "../repositories/order.repository.js";
 import { DEFAULT_ORDER_STATUS } from "../config/constants.js";
-import {notFoundProblem} from "../common/error.response.js";
 export function makeOrderId() {
   return `ord-${randomUUID().slice(0, 8)}`;
 }
@@ -43,17 +42,13 @@ export const getOneOrder = async(requestedId)=>{
     if (!matchingOrder) {
     return null
     }
-    const context = await orderRepository.prepareOrderContext(matchingOrder);
-    return orderResponse(context.record);
+    return orderResponse(matchingOrder);
 }
 export const deleteOrder = async (orderId)=>{
      const order = await orderRepository.existingOrder(orderId)
     if (!order) {
       return null
     }
-
-    await orderRepository.verifyOrderStateForRemoval(order);
-
     const orderIndex = orderRepository.orderIndex(orderId);
     if (orderIndex === -1) {
       return null

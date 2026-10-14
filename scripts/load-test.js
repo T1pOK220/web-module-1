@@ -1,4 +1,4 @@
-const { performance } = require("node:perf_hooks");
+import { performance } from "node:perf_hooks";
 
 const baseUrl = (process.env.BASE_URL || "http://localhost:3000").replace(
   /\/$/,
