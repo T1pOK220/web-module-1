@@ -1,7 +1,6 @@
-const { after, before, describe, test } = require("node:test");
-const assert = require("node:assert/strict");
-const app = require("../app");
-
+import app  from "../app.js";
+import assert from "node:assert";
+import { after, before, describe, test } from "node:test"
 let server;
 let baseUrl;
 
