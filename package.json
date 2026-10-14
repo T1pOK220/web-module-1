@@ -4,6 +4,7 @@
   "private": true,
   "description": "Навчальний модуль з рефакторингу та аналізу Orders API",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "node app.js",
     "test": "node --test test/orders-api.test.js",
